@@ -83,4 +83,24 @@ an android sqlite ORM tool
     }
   ```
 
+## Queries.
+### Insert Quries.
+  EzSql consists of simple insert queries. These queries are ran by calling the 
+  **insert** method of EzQuery Class from the Class instance.
+  #### Example
+  ``` Java
+        HashMap<String , Object> user = new HashMap < String, Object > (  );
+        user.put 
+          ( "id", // the name of the column.
+            1 // the value of the column.
+           );
+        user.put ( "name", "James" );
+        user.put ( "email", "james@gmail.com" );
+
+        try {
+           long rows = EzQuery.getQuery ( this ).setTransactionSafe ( true )
+                 .insert ( User.class, user )
+                 .go ();
+
+  ```
   
