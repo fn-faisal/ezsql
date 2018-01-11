@@ -28,8 +28,9 @@ an android sqlite ORM tool
       4. EzFk ( Annotate your Class property with EzFk to let EzSql know that this Property represents a Foreign key for the table  ).
       
 #### Example.
-    Lets consider a table name user with columns id, name, and email, where the id column is the primary key.
-    ``` Java
+   Lets consider a table name user with columns id, name, and email, where the id column is the primary key.
+ 
+   ``` Java
     @EzTable ( "user" )
     public class User {
        @EzPk ( "id" )
@@ -56,7 +57,8 @@ an android sqlite ORM tool
     ```
     
     For Foreign key, lets assume that each user has an Item. And the model class for this would look somthing like follows:-
-    ``` Java
+    
+   ``` Java
     @EzTable ( "item" )
     public class Item {
         @EzPk ( "id" )
