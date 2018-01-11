@@ -134,7 +134,11 @@ an android sqlite ORM tool
     .go();
   ```
     The above query update the row where user's name is "James".
+    
 ### Delete Quries ( Not yet finished ). 
+  EzSql consists of simple delete queries. These queries are ran by calling the 
+  **remove** method of EzQuery Class from the Class instance. Supply this method with
+  the Model Class ( must include conditional method that identify the row to delete ).
  ``` Java
     long rowsEffected = EzQuery.getQuery ( this )
     .remove ( Model.class )
@@ -142,6 +146,14 @@ an android sqlite ORM tool
     .go();
   ```
     The above query deletes the row where user's name is James.
+
+### Raw Sql Quries ( Not yet finished ).  
+   When you need to run a raw sql command, simply use the **rawSql** method of the EzQuery Class.
    
-  
-  
+   #### Example
+ ``` Java
+    Cursor c = EzQuery.getQuery ( this )
+      .rawSql ( "Select * from user" )
+      .go ();
+ ```
+  This type of query returns a cursor object.
