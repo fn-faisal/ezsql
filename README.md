@@ -85,8 +85,10 @@ an android sqlite ORM tool
 
 ## Queries.
 ### Insert Quries.
-  EzSql consists of simple insert queries. These queries are ran by calling the 
-  **insert** method of EzQuery Class from the Class instance.
+  EzSql consists of simple insert queries. These queries are ran by calling the **insert** 
+  method of EzQuery Class from the Class instance. Supply this method with the Class
+  Object of the Model class and a hashmap which represents the table column name as keys, and 
+  column value as the value for the keys.
   #### Example
   ``` Java
         HashMap<String , Object> user = new HashMap < String, Object > (  );
@@ -103,4 +105,19 @@ an android sqlite ORM tool
                  .go ();
 
   ```
+  
+### Search Quries.
+  EzSql consists of simple search queries. These queries are ran by calling the 
+  **find** method of EzQuery Class from the Class instance. Supply this method with
+  the Model Class ( optionaly can include conditional statements ).
+  #### Example
+ ``` Java
+  ArrayList<User> users = EzQuery.getQuery ( this )
+                 .find ( User.class )
+                 .colEq ( "name" , "james" )
+                 .go ();
+ ```
+  The above query returns the user whose name is james. If you don't include the conditional methods 
+  and call the **go** method after the find method, all the records will be returned.
+  
   
