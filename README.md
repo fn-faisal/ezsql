@@ -54,7 +54,7 @@ an android sqlite ORM tool
 
         public void setEmail ( String email ) { this.email = email; }
     }
-    ```
+  ```
     
     For Foreign key, lets assume that each user has an Item. And the model class for this would look somthing like follows:-
     
@@ -81,6 +81,6 @@ an android sqlite ORM tool
         public int getUserRef () { return userRef; }
         public void setUserRef ( int userRef ) { this.userRef = userRef; }
     }
-    ```
+  ```
 
   
