@@ -120,4 +120,28 @@ an android sqlite ORM tool
   The above query returns the user whose name is james. If you don't include the conditional methods 
   and call the **go** method after the find method, all the records will be returned.
   
+### Update Quries ( Not yet finished ). 
+  EzSql consists of simple update queries. These queries are ran by calling the 
+  **update** method of EzQuery Class from the Class instance. Supply this method with
+  the Model Class ( must include conditional method that identify the row to update ), and a HashMap
+  with the name of the column/columns to update.
+  
+  #### Example
+ ``` Java
+    long rowsEffected = EzQuery.getQuery ( this )
+    .update ( Model.class, HashMap )
+    .colEq ( "name" , "james" )
+    .go();
+  ```
+    The above query update the row where user's name is "James".
+### Delete Quries ( Not yet finished ). 
+ ``` Java
+    long rowsEffected = EzQuery.getQuery ( this )
+    .remove ( Model.class )
+    .colEq ( "name" , "james" )
+    .go();
+  ```
+    The above query deletes the row where user's name is James.
+   
+  
   
