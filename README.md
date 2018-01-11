@@ -1,5 +1,7 @@
 # EzSql
-an android sqlite ORM tool
+An android sqlite ORM tool with easy querying of data, database ( Schema ) caching functionality,
+and rollback functionality to shift the database to previous version. No need to include scripts or
+update logic on database version changes, simple change the version number in the configuration.
 
 ## Getting started
 ### Configuring EzSql.
