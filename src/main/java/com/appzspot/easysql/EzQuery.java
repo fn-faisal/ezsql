@@ -58,8 +58,8 @@ public class EzQuery {
 
    private static final String SQL_SELECT = " SELECT %1$s FROM %2$s ";
    private static final String SQL_INSERT = " INSERT INTO `%1$s` %2$s VALUES %3$s";
-   private static final String SQL_REMOVE = " DELETE FROM `%1$s` ";
-   private static final String SQL_UPDATE = " UPDATE `%1$s` SET %2$s ";
+   private static final String SQL_REMOVE = " DELETE FROM %1$s";
+   private static final String SQL_UPDATE = " UPDATE %1$s SET %2$s";
 
    private static final String SQL_TRANSACTION_START = "BEGIN TRANSACTION";
    private static final String SQL_TRANSACTION_COMMIT = "COMMIT";
@@ -247,15 +247,15 @@ public class EzQuery {
     *
     * @throws Exception
     */
-   public EzQuery update ( Class ezClass, HashMap < String, String > updateVals )
+   public EzQuery update ( Class ezClass, HashMap < String, Object > updateVals )
            throws Exception {
-      query += "";
+      query = "";
       if ( ezClass.isAnnotationPresent ( EzTable.class ) ) {
          modelPointer = ezClass;
          EzTable tableAnn = ( EzTable ) ezClass.getAnnotation ( EzTable.class );
 
          // values string.
-         String colVals = " ";
+         String colVals = "";
          Iterator it = updateVals.entrySet ().iterator ();
          while ( it.hasNext () ) {
             Map.Entry entry = ( Map.Entry ) it.next ();
@@ -285,7 +285,7 @@ public class EzQuery {
     * @return the query result ( ArrayList<ModelObject> for select, long number of rows effected by
     * the query ).
     *
-    * @throws IllegalAccessException
+    * @throws IllegalAccessException+
     * @throws InvocationTargetException
     * @throws InstantiationException
     */
@@ -332,18 +332,22 @@ public class EzQuery {
       else if ( query.trim ().startsWith ( "UPDATE" ) ) {
          if ( transactionSafe )
             db.execSQL ( SQL_TRANSACTION_START );
-         db.rawQuery ( query, null );
+         db.execSQL ( query );
          if ( transactionSafe )
             db.execSQL ( SQL_TRANSACTION_COMMIT );
+         if ( Config.loggingEnabled )
+            Log.d ( TAG, "go: executing query : " + query );
          return ( RType ) Long.valueOf ( checkChanges ( db ) );
       }
       // if the sql is delete statement.
       else if ( query.trim ().startsWith ( "DELETE" ) ) {
          if ( transactionSafe )
             db.execSQL ( SQL_TRANSACTION_START );
-         db.rawQuery ( query, null );
+         db.execSQL ( query );
          if ( transactionSafe )
             db.execSQL ( SQL_TRANSACTION_COMMIT );
+         if ( Config.loggingEnabled )
+            Log.d ( TAG, "go: executing query : " + query );
          return ( RType ) Long.valueOf ( checkChanges ( db ) );
       }
       return null;
